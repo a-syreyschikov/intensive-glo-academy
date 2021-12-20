@@ -8,18 +8,28 @@ export const categoryFilter = (goods, value) => {
   return goods.filter((goodsItem) => {
     return goodsItem.category === value;
   });
-}
+};
 
 export const priceFilter = (goods, min, max) => {
   return goods.filter((goodsItem) => {
     if (min && max) {
-      return goodsItem.price > min && goodsItem.price < max;
+      return goodsItem.price > +min && goodsItem.price < +max;
     } else if (min) {
-      return goodsItem.price > min;
+      return goodsItem.price > +min;
     } else if (max) {
-      return goodsItem.price < max;
+      return goodsItem.price < +max;
     }
 
     return true;
   });
-}
+};
+
+export const hotSaleFilter = (goods, value) => {
+  return goods.filter((goodsItem) => {
+    if (value) {
+      return goodsItem.sale === true;
+    } else {
+      return goodsItem;
+    }
+  });
+};
